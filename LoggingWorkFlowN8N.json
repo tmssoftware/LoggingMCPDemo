@@ -6,6 +6,7 @@
         "respondWith": "returnBinary",
         "completionTitle": "image",
         "completionMessage": "Rendered Chart",
+        "inputDataFieldName": "chart",
         "options": {}
       },
       "type": "n8n-nodes-base.form",
@@ -39,13 +40,7 @@
     {
       "parameters": {
         "endpointUrl": "http://88.198.69.227:8934/mcp",
-        "serverTransport": "httpStreamable",
-        "include": "selected",
-        "includeTools": [
-          "get-daily-logs",
-          "get-logs-by-method",
-          "get-log-stats"
-        ]
+        "serverTransport": "httpStreamable"
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.1,
@@ -64,7 +59,7 @@
         "labelsMode": "array",
         "labelsArray": "={{ $json.output.data.labels }}",
         "data": "={{ $json.output.data.datasets[0].data }}",
-        "output": "={{ $json.output.data.datasets[0].label }}",
+        "output": "=chart",
         "chartOptions": {
           "backgroundColor": "="
         },
