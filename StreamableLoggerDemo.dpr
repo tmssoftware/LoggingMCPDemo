@@ -213,10 +213,12 @@ begin
     TargetDate := FormatDateTime('yyyy-mm-dd', Date);
     if Length(Args) > 0 then
     begin
-      ArgsObj := Args[0].AsType<TJSONObject>;
-      if Assigned(ArgsObj) And (Assigned(ArgsObj.GetValue('date'))) then
-        TargetDate := ArgsObj.GetValue<string>('date');
-
+      if not Args[0].IsEmpty then
+      begin
+        ArgsObj := Args[0].AsType<TJSONObject>;
+        if Assigned(ArgsObj) And (Assigned(ArgsObj.GetValue('date'))) then
+          TargetDate := ArgsObj.GetValue<string>('date');
+      end;
     end;
 
     Query.SQL.Text :=
